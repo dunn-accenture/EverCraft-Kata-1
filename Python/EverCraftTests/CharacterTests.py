@@ -38,3 +38,14 @@ class CharacterTest(unittest.TestCase):
         attacker.attack(defender, roll)
 
         self.assertEqual(3, defender.hit_points)
+
+    def test_if_defender_hit_points_less_or_equal_to_zero_defender_dies(self):
+        attacker = Character()
+        defender = Character()
+
+        roll = defender.armor_class + 1
+
+        for i in range(defender.hit_points):
+            attacker.attack(defender, roll)
+
+        self.assertFalse(defender.is_alive)
