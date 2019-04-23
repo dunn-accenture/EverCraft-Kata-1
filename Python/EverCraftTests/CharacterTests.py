@@ -50,6 +50,7 @@ class CharacterTest(unittest.TestCase):
 
         self.assertFalse(defender.is_alive)
 
+    @unittest.skip
     def test_ability_modifier_allows_high_strength_to_hit_on_lower_roll_than_armor_class_value(self):
         attacker = Character()
         attacker.str = 18
@@ -62,3 +63,14 @@ class CharacterTest(unittest.TestCase):
 
         self.assertEqual(4, defender.hit_points)
 
+    def test_strength_modifier_applies_to_attack_damage(self):
+        attacker = Character()
+        attacker.str = 18
+        defender = Character()
+        defender.armor_class = 10
+
+        roll = 7
+
+        attacker.attack(defender, roll)
+
+        self.assertEqual(0, defender.hit_points)
