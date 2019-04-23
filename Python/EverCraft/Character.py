@@ -39,11 +39,13 @@ class Character:
         self.cha = 10
 
     def attack(self, defender, roll):
-        ability_bonus = ability_mods[self.str]
-        modified_roll = roll + ability_bonus
+        str_bonus = ability_mods[self.str]
+        defender_dex_bonus = ability_mods[defender.dex]
+        modified_roll = roll + str_bonus
+        modified_defender_armor = defender.armor_class + defender_dex_bonus
 
-        if modified_roll >= defender.armor_class:
-            defender.take_damage(self.is_crit(roll), ability_bonus)
+        if modified_roll >= modified_defender_armor:
+            defender.take_damage(self.is_crit(roll), str_bonus)
 
             return "OUCH!"
 

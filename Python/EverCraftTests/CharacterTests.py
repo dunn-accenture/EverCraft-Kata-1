@@ -100,3 +100,11 @@ class CharacterTest(unittest.TestCase):
 
         self.assertEqual(14, defender.hit_points)
 
+    def test_dex_modifier_applies_to_armor_class(self):
+        attacker = Character()
+        defender = Character()
+        defender.dex = 12
+
+        roll = 10
+
+        self.assertEqual("MISSED ME!", attacker.attack(defender, roll))
