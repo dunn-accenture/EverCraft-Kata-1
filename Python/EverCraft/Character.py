@@ -55,6 +55,8 @@ class Character:
             self.is_alive = False
 
     def take_damage(self, crit, bonus):
+        if bonus < 0:
+            bonus = 0
         self.hit_points -= 1 + bonus
 
         if crit:
