@@ -57,11 +57,11 @@ class Character:
     def take_damage(self, crit, bonus):
         if bonus < 0:
             bonus = 0
-        self.hit_points -= 1 + bonus
-
         if crit:
-            self.hit_points -= 1
+            bonus *= 2
+            self.hit_points -= 1 + bonus
 
+        self.hit_points -= 1 + bonus
         self.update_living_state()
 
     def is_crit(self, roll):

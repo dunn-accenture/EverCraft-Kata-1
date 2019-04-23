@@ -86,3 +86,17 @@ class CharacterTest(unittest.TestCase):
         attacker.attack(defender, roll)
 
         self.assertEqual(4, defender.hit_points)
+
+    def test_str_mod_doubled_if_natural_twenty(self):
+        attacker = Character()
+        attacker.str = 12
+        defender = Character()
+        defender.hit_points = 20
+        defender.armor_class = 10
+
+        roll = 20
+
+        attacker.attack(defender, roll)
+
+        self.assertEqual(14, defender.hit_points)
+
