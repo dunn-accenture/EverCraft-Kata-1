@@ -39,8 +39,10 @@ class Character:
         self.cha = 10
 
     def attack(self, defender, roll):
-        if roll >= defender.armor_class:
-            defender.take_damage(roll)
+        modified_roll = roll + ability_mods[self.str]
+
+        if modified_roll >= defender.armor_class:
+            defender.take_damage(self.is_crit(roll))
 
             return "OUCH!"
 
@@ -51,9 +53,14 @@ class Character:
         if self.hit_points <= 0:
             self.is_alive = False
 
-    def take_damage(self, roll):
+    def take_damage(self, crit):
         self.hit_points -= 1
 
-        if roll == CRITICAL_HIT:
+        if crit:
             self.hit_points -= 1
+
         self.update_living_state()
+
+    def is_crit(self, roll):
+        if roll == CRITICAL_HIT:
+            return True
