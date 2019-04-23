@@ -38,6 +38,10 @@ class Character:
         self.int = 10
         self.cha = 10
 
+    def setCon(self, newCon):
+        self.con = newCon
+        self.hit_points += ability_mods[newCon]
+
     def attack(self, defender, roll):
         str_bonus = ability_mods[self.str]
         defender_dex_bonus = ability_mods[defender.dex]

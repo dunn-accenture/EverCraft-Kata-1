@@ -108,3 +108,9 @@ class CharacterTest(unittest.TestCase):
         roll = 10
 
         self.assertEqual("MISSED ME!", attacker.attack(defender, roll))
+
+    def test_con_modifier_applies_to_hit_points(self):
+        defender = Character()
+        defender.setCon(12)
+
+        self.assertEqual(6, defender.hit_points)
